@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+{% block title %}
+APPOINTMENT
+{% endblock title %}
+
+{% block css %}
+
+.list-unstyled{
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-family: Monospace;
+}
+h5{
+    letter-spacing: 1px;
+    font-family: Monospace; 
+}
+p{
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-family: Monospace;
+}
+.con{
+    padding-top: 50px;
+    padding-bottom: 80px;
+}
+.btn{
+    background-color: #4cd748;
+    border-color: #4cd748;
+}
+
+{% endblock css %}
+
+{% block body %}
+
+<div class="con">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5 col-md-8">
+                <!--form  start-->
+                <legend>Appointment Form</legend>
+                <hr>
+                <div class="container">
+            <form method="post" enctype="multipart/form-data" action="/appointment">
+            {% csrf_token %} 
+                <div class="row g-6 align-items-center">
+                    <div class="col-6">
+                      <label for="name" class="col-form-label">Name</label>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Full Name">
+                    </div>
+                    <div class="col-6">
+                        <label for="age" class="col-form-label">Age</label>
+                        <input type="text" class="form-control" id="age" name="age" placeholder="Enter Your Age">
+                    </div>
+                  </div>
+                  <div class="row g-6 align-items-center">
+                    <div class="col-6">
+                      <label for="phone" class="col-form-label">Phone</label>
+                      <input type="phone" class="form-control" id="phone" name="phone" placeholder="Enter Your Mobile Number">
+                    </div>
+                    <div class="col-6">
+                        <label for="email" class="col-form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email id">
+                    </div>
+                  </div><br>
+                <div class="mb-3">
+                    <label for="department" class="form-label">Department</label>
+                    <input type="text" class="form-control" id="department" name="department" placeholder="department">
+                  </div>
+                  <div class="row g-6 align-items-center">
+                    <div class="col-6">
+                        <label for="doctors" class="form-label">Doctors</label>
+                        
+                        <select class="form-select" id="doctor" name="doctor" placeholder="doctor">
+                          <option value="DR. HARSHIL PATEL">DR. HARSHIL PATEL</option>
+                          <option value="DR. SHREYA SHAH">DR. SHREYA SHAH</option>
+                        </select>
+                      </div>
+                    <div class="col-6">
+                        <label for="slot" class="col-form-label">Slot</label>
+                        <select class="form-select" id="slot" name="slot" placeholder="slot">
+                            <option value="8AM-10AM">8AM-10AM</option>
+                            <option value="11AM-1PM">11AM-1PM</option>
+                            <option value="4PM-6PM">4PM-6PM</option>
+                          </select>
+                          <div style="color: red;">
+                            {{prompt}}
+                          </div>
+                        </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="day" class="form-label">Day</label>
+                    <select class="form-select" id="day" name="day" placeholder="day">
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                      </select>
+                    </div>
+                  <div class="mb-3">
+                    <label for="bmi" class="form-label">BMI</label>
+                    <input type="text" class="form-control" id="bmi" name="bmi" placeholder="Enter your BMI">
+                  </div>
+                  <div class="mb-3">
+                    <label for="summary" class="form-label">Summary</label>
+                    <input type="text" class="form-control" id="summary" name="summary" placeholder="Summary(Reason)">
+                  </div>
+                  <div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <textarea class="form-control" id="address" rows="3" name="address"  placeholder="Enter Your Address"></textarea><br>
+                    <div class="row g-6 align-items-center">
+                        <div class="col-6">
+                          <label for="date" class="col-form-label">Date</label>
+                          <input type="date" class="form-control" id="date" name="date">
+                        </div>
+                        <div class="col-6">
+                            <label for="time" class="col-form-label">Time</label>
+                            <input type="time" class="form-control" id="time" name="time">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="report" class="form-label">Report</label>
+                        
+                        <input type="file" class="form-control" id="report" name="report">
+                      </div>
+                    <br>
+                    <button type="submit" onclick=dadu() class="btn btn-success">Submit</button>
+                </div>
+                <script>
+                    function dadu()
+                    {
+                        console.log(document.getElementById("report"))
+                    }
+                </script>
+            </form>
+            </diV>
+            </div>
+            <div class="col-sm-5 offset-sm-2 col-md-4 offset-md-0">
+					<!-- Address -->
+    
+					<div class="headline"><h5>Address</h5></div>
+                    <hr>
+					<ul class="list-unstyled" style="margin-bottom: 30px;">
+					<li><a href="#"><i class="fa fa-home"></i>Kolkata, IN.</a></li>
+					<li><a href="#"><i class="fa fa-envelope"></i>bmiwise@gmail.com</a></li>
+					<li><a href="#"><i class="fa fa-phone"></i>886 666 00555</a></li>
+					<li><a href="#"><i class="fa fa-globe"></i>http://www.bmiwise.com</a></li>
+					</ul>
+                    <br>
+					<!-- Business Hours -->
+					<div class="headline"><h5>Business Hours</h5></div>
+                    <hr>
+					<ul class="list-unstyled " style="margin-bottom: 30px;">
+					<li><strong>Monday-Saturday:</strong> 24/7 Available.</li><br>
+					<li><strong>Sunday:</strong> 6 AM to 9 PM.</li>
+					</ul>
+                    <br>
+					<!-- Why choose us? -->
+					<div class="headline"><h5>Your needs Our needs</h5></div>
+                    <hr>
+					<p>BMIwise: Your college health hub, prioritizing student wellness with focused insights on blood pressure, cholesterol, and BMI management.</p>
+                    <br>
+					<ul class="list-unstyled">
+					<li><i class="fa fa-check color-green"></i> 24/7 Support.</li>
+					<li><i class="fa fa-check color-green"></i> Eminent and Experienced faculties.</li>
+					<li><i class="fa fa-check color-green"></i> Multiple Options to address.</li>
+					</ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+ {% endblock body %}

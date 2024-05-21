@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block title %}
+BMI Calculator
+{% endblock title %}
+
+{% block body %}
+
+
+
+
+ <center> <h1>BMI Calculator</h1>
+
+<div class="container">
+    <div class="subheading">Enter Weight (in kg): </div>
+    <input type="number" id="weightInput" placeholder="Weight (in kg)"><br><br>
+    <div class="subheading">Enter Height (in cm): </div>
+    <input type="number" id="heightInput" placeholder="Height (in cm)"><br><br>
+    <button onclick="calculateBMI()">Calculate BMI</button>
+</div>
+
+<div class="meter-container">
+    <div class="meter">
+        <div class="progress" id="progress"></div>
+        <div class="label" id="label">BMI</div>
+    </div>
+</div>
+
+<!-- New element to display BMI result -->
+<div class="bmi-result" id="bmiResult"></div>
+
+<h2 class="additional-info">Lifestyle Changes</h2>
+<!-- New element to display lifestyle changes -->
+<div class="lifestyle-changes" id="lifestyleChanges"></div>
+
+<script>
+    function calculateBMI() {
+        var weight = document.getElementById("weightInput").value;
+        var heightCm = document.getElementById("heightInput").value;
+        var heightM = heightCm / 100; // converting height from cm to m
+        var progress = document.getElementById("progress");
+        var label = document.getElementById("label");
+        var bmiResult = document.getElementById("bmiResult");
+        var lifestyleChanges = document.getElementById("lifestyleChanges");
+
+        if (weight > 0 && heightM > 0) {
+            var bmi = weight / (heightM * heightM);
+
+            if (bmi < 18.5) {
+                progress.style.width = "10%";
+                progress.style.backgroundColor = "#ffff4d"; // Underweight
+                label.innerHTML = "Underweight";
+                lifestyleChanges.innerHTML = `
+                    <p>1. Increase calorie intake by eating nutrient-dense foods like nuts, seeds, and avocados.</p>
+                    <p>2. Eat frequent, small meals throughout the day to boost calorie consumption.</p>
+                    <p>3. Incorporate strength training exercises to build muscle mass.</p>
+                    <p>4. Avoid empty-calorie foods and drinks like soda and processed snacks.</p>
+                    <p>5. Consider protein supplements to support muscle growth.</p>
+                    <p>6. Want to book an appointment? <a href="/appointment">click here</a></p>
+                    `;
+            } else if (bmi >= 18.5 && bmi <= 24.9) {
+                progress.style.width = "50%";
+                progress.style.backgroundColor = "#47d147"; // Normal weight
+                label.innerHTML = "Normal Weight";
+                lifestyleChanges.innerHTML = `
+		<p><h1> CONGRATULATIONS!You are leading a healthy life.</h1></p>
+                    <p>1. Maintain a balanced diet with a variety of fruits, vegetables, whole grains, and lean proteins.</p>
+                    <p>2. Engage in regular physical activity for at least 30 minutes most days of the week.</p>
+                    <p>3. Practice stress management techniques like yoga or meditation.</p>
+                    <p>4. Get adequate sleep to support overall health and well-being.</p>
+                    <p>5. Limit processed foods and added sugars in your diet.</p>
+                    `;
+            } else if (bmi >= 25 && bmi <= 29.9) {
+                progress.style.width = "80%";
+                progress.style.backgroundColor = "#ff8533"; // Overweight
+                label.innerHTML = "Overweight";
+                lifestyleChanges.innerHTML = `
+                    <p>1. Increase physical activity to help burn excess calories and fat.</p>
+                    <p>2. Focus on portion control and mindful eating to avoid overeating.</p>
+                    <p>3. Choose whole, unprocessed foods over processed options.</p>
+                    <p>4. Incorporate more fiber-rich foods like fruits, vegetables, and whole grains into your diet.</p>
+                    <p>5. Limit consumption of sugary beverages and alcohol.</p>
+                    <p>6. Want to book an appointment? <a href="/appointment">click here</a></p>
+                    `;
+            } else {
+                progress.style.width = "100%";
+                progress.style.backgroundColor = "#ff3300"; // Obese
+                label.innerHTML = "Obese";
+                lifestyleChanges.innerHTML = `
+                    <p>1. Consult with a healthcare provider or nutritionist to create a personalized weight loss plan.</p>
+                    <p>2. Increase physical activity with a combination of cardio and strength training exercises.</p>
+                    <p>3. Monitor portion sizes and practice mindful eating habits.</p>
+                    <p>4. Choose nutrient-dense foods that are low in calories but high in vitamins and minerals.</p>
+                    <p>5. Stay consistent with your lifestyle changes and seek support from friends, family, or a support group.</p>
+                    <p>6. Want to book an appointment? <a href="/appointment">click here</a></p>
+                    `;
+            }
+
+            // Update BMI result text
+            bmiResult.innerHTML = "BMI: " + bmi.toFixed(2);
+
+        } else {
+            alert("Please enter valid weight and height values.");
+        }
+    }
+</script>
+</center>
+
+
+
+
+{% endblock body %}

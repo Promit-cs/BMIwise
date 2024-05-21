@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block title %}
+CONTACT
+{% endblock title %}
+
+{% block css %}
+
+.list-unstyled{
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-family: Monospace;
+}
+h5{
+    letter-spacing: 1px;
+    font-family: Monospace; 
+}
+p{
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-family: Monospace;
+}
+.con{
+    padding-top: 50px;
+    padding-bottom: 80px;
+}
+.btn{
+    background-color: #4cd748;
+    border-color: #4cd748;
+}
+
+{% endblock css %}
+
+{% block body %}
+<div class="con">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5 col-md-8">
+                <!--form  start-->
+                <legend>Contact Form</legend>
+                <hr>
+                <div class="container">
+            <form method="post" action="/contact">
+            {% csrf_token %} 
+                <div class="row g-6 align-items-center">
+                    <div class="col-6">
+                      <label for="name" class="col-form-label">Name</label>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Full Name">
+                    </div>
+                    <div class="col-6">
+                        <label for="email" class="col-form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email id">
+                    </div>
+                  </div>
+                  <br>
+                <div class="mb-3">
+                    <label for="subject" class="form-label">Subject</label>
+                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
+                  </div>
+                  <div class="mb-3">
+                    <label for="phone" class="form-label">Mobile Number</label>
+                    <input type="phone" class="form-control" id="phone" name="phone"  placeholder="Enter Your Mobile Number">
+                  </div>
+                  <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" rows="3" name="message"  placeholder="Tell me about what you want to contact me for ..."></textarea><br>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+            </diV>
+            </div>
+            <div class="col-sm-5 offset-sm-2 col-md-4 offset-md-0">
+					<!-- Address -->
+                    
+					<div class="headline"><h5>Address</h5></div>
+                    <hr>
+					<ul class="list-unstyled" style="margin-bottom: 30px;">
+					<li><a href="#"><i class="fa fa-home"></i>Kolkata, IN.</a></li>
+					<li><a href="#"><i class="fa fa-envelope"></i>bmiwise@gmail.com</a></li>
+					<li><a href="#"><i class="fa fa-phone"></i>886 666 00555</a></li>
+					<li><a href="#"><i class="fa fa-globe"></i>http://www.bmiwise.com</a></li>
+					</ul>
+
+					<!-- Business Hours -->
+					<div class="headline"><h5>Business Hours</h5></div>
+                    <hr>
+					<ul class="list-unstyled " style="margin-bottom: 30px;">
+					<li><strong>Monday-Saturday:</strong> 24/7 Available.</li>
+					<li><strong>Sunday:</strong> 6 AM to 9 PM.</li>
+					</ul>
+
+					<!-- Why choose us? -->
+					<div class="headline"><h5>Your needs Our needs</h5></div>
+                    <hr>
+					<p>BMIwise: Your college health hub, prioritizing student wellness with focused insights on blood pressure, cholesterol, and BMI management.</p>
+					<ul class="list-unstyled">
+					<li><i class="fa fa-check color-green"></i> 24/7  Support.</li>
+					<li><i class="fa fa-check color-green"></i> Eminent and Experienced faculties.</li>
+					<li><i class="fa fa-check color-green"></i> Multiple Options to address.</li>
+					</ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+ {% endblock body %}
